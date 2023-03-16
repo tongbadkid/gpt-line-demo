@@ -1,0 +1,44 @@
+1. สร้าง API KEY ใน open ai
+
+chat gpt api 
+https://platform.openai.com/account/api-keys
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+2. import LINE Bot SDK ไลบรารี่เข้าไปใน app script โดยค้นหาไลบรารี่จากไอดี 
+
+appscript  -  https://www.google.com/script/start/
+
+SDK id  -  1KsjhQa6oymhUiACWsAlFTG_XoN8Pnz4px2ekABPjO4tSMX6xRSQMBicy
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+3. สร้างไฟล์ชื่อ function.js ใน App script 
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+4. คัดลอก code ใส่ใน function.js 
+ 
+https://gist.githubusercontent.com/abi/94ffd06cf654038c75f56ff59ef2f086/raw/e2f911eecb98b286bd13bd47df595f83c43f5abb/gpt3-in-your-sheets.js
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+5. คัดลอก Code  ใส่ในไฟล์ code.gs ใน app script และแก้ไข Access token
+
+const ACCESS_TOKEN = "YOUR LINE ACCESS TOKEN";
+
+const bot = new LineBotSdk.client(ACCESS_TOKEN);
+function doPost (e) { bot.call(e, callback) };
+
+function callback (e) {
+  var stringIn = e.message.text;
+
+  let startsWithbot = e.message.text.startsWith("bot");
+
+  let startsWithBot = e.message.text.startsWith("Bot");
+
+  if (startsWithbot || startsWithBot) {
+    var textResult = AI(e.message.text);
+    bot.replyMessage(e, [bot.textMessage(textResult)]);
+  }
+}
